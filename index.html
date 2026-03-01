@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>FA ESP</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - prime Gaming Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: #0a0c0f;
+            color: #ffffff;
+            line-height: 1.5;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* প্রিমিয়াম অ্যানিমেটেড ব্যাকগ্রাউন্ড */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, #ff2a6d20 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, #2a6dff20 0%, transparent 50%),
+                        radial-gradient(circle at 40% 50%, #ffb86b20 0%, transparent 50%);
+            z-index: -1;
+            animation: premiumGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes premiumGlow {
+            0%, 100% { opacity: 0.5; filter: blur(2px); }
+            50% { opacity: 1; filter: blur(4px); }
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* প্রিমিয়াম গ্লাস ইফেক্ট কার্ড */
+        .premium-card {
+            background: rgba(10, 20, 30, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid;
+            border-image: linear-gradient(45deg, #ff2a6d, #2a6dff, #ff2a6d) 1;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 42, 109, 0.2) inset;
+            animation: cardFloat 6s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); box-shadow: 0 20px 40px -10px #ff2a6d40; }
+            50% { transform: translateY(-5px); box-shadow: 0 30px 50px -10px #ff2a6d80; }
+        }
+
+        .premium-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
+            transform: rotate(45deg);
+            animation: premiumShine 8s infinite;
+        }
+
+        @keyframes premiumShine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            40%, 100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        /* হেডার */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #1a1f2e, #0f1420);
+            border-radius: 30px;
+            border: 2px solid #ff2a6d;
+            box-shadow: 0 0 30px #ff2a6d80;
+            animation: slideDown 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .team-logo {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(145deg, #ff2a6d, #b81c5c);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: white;
+            transform: rotate(5deg);
+            box-shadow: 0 10px 20px -5px #ff2a6d80;
+            animation: logoGlow 3s infinite;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { box-shadow: 0 0 20px #ff2a6d; transform: rotate(5deg); }
+            50% { box-shadow: 0 0 40px #ff2a6d; transform: rotate(10deg) scale(1.05); }
+        }
+
+        .team-text h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(130deg, #fff, #ff2a6d, #ffb86b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+            text-shadow: 0 0 20px #ff2a6d;
+        }
+
+        .team-text p {
+            font-size: 0.7rem;
+            color: #a0b8d0;
+            letter-spacing: 2px;
+        }
+
+        .pro-badge {
+            background: #ff2a6d;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            box-shadow: 0 0 30px #ff2a6d;
+            animation: badgePulse 2s infinite;
+            border: 1px solid white;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* হিরো সেকশন */
+        .hero {
+            text-align: center;
+            padding: 35px 20px;
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, #0f1a24, #03070c);
+            border-radius: 40px;
+            border: 2px solid #ff2a6d;
+            position: relative;
+            overflow: hidden;
+            animation: heroGlow 4s infinite;
+        }
+
+        @keyframes heroGlow {
+            0%, 100% { border-color: #ff2a6d; box-shadow: 0 0 30px #ff2a6d; }
+            50% { border-color: #2a6dff; box-shadow: 0 0 50px #2a6dff; }
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,42,109,0.2), transparent);
+            animation: scan 6s infinite;
+        }
+
+        @keyframes scan {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .hero h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            color: #ff2a6d;
+            text-shadow: 0 0 30px #ff2a6d;
+            display: block;
+            font-size: 2.8rem;
+        }
+
+        /* প্লেয়ার গ্রিড */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 30px 0 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+        }
+
+        .section-title i {
+            color: #ff2a6d;
+            font-size: 2rem;
+            animation: spin 5s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .player-card {
+            background: #111a24;
+            border-radius: 28px;
+            padding: 18px 12px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: cardAppear 0.8s ease forwards;
+            opacity: 0;
+            box-shadow: 0 15px 30px -10px black;
+        }
+
+        .player-card:nth-child(1) { animation-delay: 0.1s; }
+        .player-card:nth-child(2) { animation-delay: 0.2s; }
+        .player-card:nth-child(3) { animation-delay: 0.3s; }
+        .player-card:nth-child(4) { animation-delay: 0.4s; }
+        .player-card:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes cardAppear {
+            from { transform: translateY(50px) scale(0.9); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        .player-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            border-color: #ff2a6d;
+            box-shadow: 0 25px 50px -10px #ff2a6d;
+        }
+
+        .player-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff2a6d, #2a6dff, #ff2a6d);
+        }
+
+        /* প্লেয়ার ইমেজ */
+        .player-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            border: 4px solid #ff2a6d;
+            box-shadow: 0 0 30px #ff2a6d, 0 0 0 4px #0f1a24 inset;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .player-card:hover .player-img {
+            transform: scale(1.05);
+            border-color: #fff;
+            box-shadow: 0 0 50px #ff2a6d;
+        }
+
+        .player-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .player-card:hover .player-img img {
+            transform: scale(1.1);
+        }
+
+        /* অনলাইন স্ট্যাটাস */
+        .online-status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 14px;
+            height: 14px;
+            background: #00ff00;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #00ff00;
+            animation: onlinePulse 2s infinite;
+            z-index: 2;
+            border: 2px solid #0f1a24;
+        }
+
+        @keyframes onlinePulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.2); }
+        }
+
+        .player-role {
+            background: linear-gradient(90deg, #ff2a6d, #d41e58);
+            color: white;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-block;
+            margin: 8px 0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 5px 15px #ff2a6d80;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .player-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 8px 0 4px;
+            color: #fff;
+            text-shadow: 0 0 10px #ff2a6d;
+        }
+
+        .player-fullname {
+            font-size: 0.7rem;
+            color: #a0b8d0;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .player-stats {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: #ff2a6d;
+            font-weight: 600;
+        }
+
+        .player-stats span {
+            color: #a0b8d0;
+            font-size: 0.8rem;
+        }
+
+        /* কন্টাক্ট সেকশন */
+        .contact-section {
+            margin: 40px 0;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #0f1a24, #1a2633);
+            border-radius: 40px;
+            border: 2px solid #ff2a6d;
+            position: relative;
+            overflow: hidden;
+            animation: contactGlow 4s infinite;
+        }
+
+        @keyframes contactGlow {
+            0%, 100% { border-color: #ff2a6d; }
+            50% { border-color: #2a6dff; }
+        }
+
+        .contact-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 25px;
+            color: #ff2a6d;
+            text-shadow: 0 0 20px #ff2a6d;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .contact-item {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px 8px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid #ff2a6d80;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            animation: contactPop 0.5s ease forwards;
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .contact-item:nth-child(1) { animation-delay: 0.1s; }
+        .contact-item:nth-child(2) { animation-delay: 0.15s; }
+        .contact-item:nth-child(3) { animation-delay: 0.2s; }
+        .contact-item:nth-child(4) { animation-delay: 0.25s; }
+        .contact-item:nth-child(5) { animation-delay: 0.3s; }
+        .contact-item:nth-child(6) { animation-delay: 0.35s; }
+        .contact-item:nth-child(7) { animation-delay: 0.4s; }
+        .contact-item:nth-child(8) { animation-delay: 0.45s; }
+
+        @keyframes contactPop {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .contact-item:hover {
+            background: #ff2a6d;
+            transform: translateY(-8px) scale(1.1);
+            border-color: white;
+            box-shadow: 0 15px 30px #ff2a6d;
+        }
+
+        .contact-item i {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: #ff2a6d;
+            transition: 0.3s;
+        }
+
+        .contact-item:hover i {
+            color: white;
+            transform: scale(1.2);
+        }
+
+        .contact-item span {
+            font-size: 0.7rem;
+            display: block;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* লোগো সেকশন */
+        .logo-showcase {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(10, 20, 30, 0.8);
+            border-radius: 50px;
+            border: 1px solid #ff2a6d;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-item {
+            text-align: center;
+            animation: float 4s infinite;
+            filter: drop-shadow(0 0 15px #ff2a6d);
+        }
+
+        .logo-item:nth-child(2) { animation-delay: 0.5s; }
+        .logo-item:nth-child(3) { animation-delay: 1s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .ff-logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(145deg, #ff4d4d, #b30000);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.5rem;
+            margin: 0 auto 8px;
+            transform: rotate(5deg);
+            box-shadow: 0 10px 20px #ff000080;
+        }
+
+        .escd-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(145deg, #00ffaa, #00aa88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px #00ffaa);
+        }
+
+        .logo-item i {
+            font-size: 2.5rem;
+            color: #ff7b9c;
+        }
+
+        .logo-item span {
+            font-size: 0.7rem;
+            display: block;
+            color: #a0b8d0;
+            letter-spacing: 1px;
+        }
+
+        /* ফুটার */
+        .footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 20px;
+            color: #a0b8d0;
+            font-size: 0.8rem;
+            border-top: 2px solid;
+            border-image: linear-gradient(90deg, transparent, #ff2a6d, #2a6dff, #ff2a6d, transparent) 1;
+            position: relative;
+        }
+
+        .footer i {
+            color: #ff2a6d;
+            animation: heartBeat 1.5s infinite;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        /* কাস্টম স্ক্রলবার */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0c0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #ff2a6d, #2a6dff);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- হেডার -->
+        <header class="header">
+            <div class="logo-area">
+                <div class="team-logo">
+                    FA
+                </div>
+                <div class="team-text">
+                    <h1>FA ESP</h1>
+                    <p>PRIME GAMING SQUAD</p>
+                </div>
+            </div>
+            <div class="pro-badge">
+                <i class="fas fa-crown"></i> PRIME TEAM
+            </div>
+        </header>
+
+        <!-- হিরো সেকশন -->
+        <section class="hero">
+            <h2>
+                <span class="highlight">#FA ESP</span>
+                READY TO DOMINATE
+            </h2>
+            <p style="color: #b0c8e0; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px;">Free Fire Professional Squad 2026</p>
+        </section>
+
+        <!-- প্লেয়ার সেকশন -->
+        <div class="section-title">
+            <i class="fas fa-users"></i>
+            <span> PLAYER INFO <span style="color: #ff2a6d;"></span></span>
+        </div>
+
+        <div class="team-grid">
+            <!-- ১. FA LIMON - Sniper -->
+            <div class="player-card">
+                <div class="online-status"></div>
+                <div class="player-img">
+                    <img src="https://i.ibb.co.com/1tNhwNx2/1772347017509-1.jpg" alt="FA LIMON">
+                </div>
+                <span class="player-role">🎯 SNIPER</span>
+                <h3 class="player-name">FA LIMON</h3>
+                <p class="player-fullname"></p>
+                <div class="player-stats">
+                    <span></span>  <span></span>
+                </div>
+            </div>
+
+            <!-- ২. FA HASIB - Supporter -->
+            <div class="player-card">
+                <div class="online-status"></div>
+                <div class="player-img">
+                    <img src="https://i.ibb.co.com/PZ3Bvj0K/1772347658137-1.jpg" alt="FA HASIB">
+                </div>
+                <span class="player-role">🛡️ SUPPORTER</span>
+                <h3 class="player-name">FA HASIB</h3>
+                <p class="player-fullname"></p>
+                <div class="player-stats">
+                    <span></span> <span></span>
+                </div>
+            </div>
+
+            <!-- ৩. FA AMAN - Bomber -->
+            <div class="player-card">
+                <div class="online-status"></div>
+                <div class="player-img">
+                    <img src="https://i.ibb.co.com/1NcpvWx/1772347304358-1.jpg" alt="FA AMAN">
+                </div>
+                <span class="player-role">💣 BOMBER</span>
+                <h3 class="player-name">FA AMAN</h3>
+                <p class="player-fullname"></p>
+                <div class="player-stats">
+                    <span></span>  <span></span>
+                </div>
+            </div>
+
+            <!-- ৪. FA HASAN - Rusher -->
+            <div class="player-card">
+                <div class="online-status"></div>
+                <div class="player-img">
+                    <img src="https://i.ibb.co.com/Y4R8YSPm/1772348973707-1.jpg" alt="FA HASAN">
+                </div>
+                <span class="player-role">⚡ RUSHER</span>
+                <h3 class="player-name">FA HASAN</h3>
+                <p class="player-fullname"></p>
+                <div class="player-stats">
+                    <span></span>  <span></span>
+                </div>
+            </div>
+
+            <!-- ৫. unknown - Supporter -->
+            <div class="player-card">
+                <div class="online-status"></div>
+                <div class="player-img">
+                    <img src="https://i.ibb.co.com/nNWcK759/1772367408873.png" alt="FA MITHU">
+                </div>
+                <span class="player-role">🤝 SUPPORTER</span>
+                <h3 class="player-name">unknown</h3>
+                <p class="player-fullname">unknown</p>
+                <div class="player-stats">
+                    <span>❤️ 2.0K</span> | <span>⚔️ 710</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- কন্টাক্ট সেকশন -->
+        <section class="contact-section">
+            <h3 class="contact-title">
+                <i class="fas fa-gamepad"></i> কন্টাক্ট আস
+            </h3>
+            
+            <div class="contact-grid">
+                <div class="contact-item" onclick="copyContact('ooxx58800@gmail.com')">
+                    <i class="fas fa-envelope"></i>
+                    <span>ইমেইল</span>
+                </div>
+                <div class="contact-item" onclick="copyContact('+8801309472330')">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>হোয়াটসঅ্যাপ</span>
+                </div>
+                <div class="contact-item" onclick="copyContact('fa_esp#0001')">
+                    <i class="fab fa-discord"></i>
+                    <span>ডিসকর্ড</span>
+                </div>
+                <div class="contact-item" onclick="copyContact('@fa_esp')">
+                    <i class="fab fa-telegram"></i>
+                    <span>টেলিগ্রাম</span>
+                </div>
+                <div class="contact-item" onclick="copyContact('@fa_esp')">
+                    <i class="fab fa-instagram"></i>
+                    <span>ইনস্টা</span>
+                </div>
+                <div class="contact-item" onclick="copyContact('/faesp.official')">
+                    <i class="fab fa-facebook"></i>
+                    <span>ফেসবুক</span>
+                </div>
+                <div class="contact-item" onclick="copyContact('@faesp')">
+                    <i class="fab fa-youtube"></i>
+                    <span>ইউটিউব</span>
+                </div>
+                <div class="contact-item" onclick="copyContact('@fa_esp')">
+                    <i class="fab fa-tiktok"></i>
+                    <span>টিকটক</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- কন্টাক্ট কপি ফাংশন -->
+        <script>
+            function copyContact(text) {
+                navigator.clipboard.writeText(text).then(function() {
+                    alert('✅ কন্টাক্ট কপি হয়েছে: ' + text);
+                }, function() {
+                    alert('❌ কপি করতে সমস্যা হয়েছে');
+                });
+            }
+        </script>
+
+        <!-- লোগো সেকশন -->
+        <div class="logo-showcase">
+            <div class="logo-item">
+                <div class="ff-logo">FF</div>
+                <span>FREE FIRE</span>
+            </div>
+            <div class="logo-item">
+                <div class="escd-logo">FA</div>
+                <span>ESPORTS</span>
+            </div>
+            <div class="logo-item">
+                <i class="fas fa-gamepad"></i>
+                <span>GARENA</span>
+            </div>
+        </div>
+
+        <!-- ফুটার -->
+        <footer class="footer">
+            <p><i class="fas fa-heart"></i> FA ESP · এলিট ফ্রি ফায়ার স্কোয়াড</p>
+            <p style="margin-top: 10px; font-size: 0.7rem;">© 2026 সর্বস্বত্ব সংরক্ষিত</p>
+        </footer>
+    </div>
+</body>
+  </html>
